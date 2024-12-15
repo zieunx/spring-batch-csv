@@ -2,29 +2,20 @@ package com.danal.publicdataprocessor.batch.processor;
 
 import com.danal.publicdataprocessor.batch.dto.RestaurantCsvRowData;
 import com.danal.publicdataprocessor.domain.model.Restaurant;
-import com.danal.publicdataprocessor.domain.repository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
+/**
+ * CsvToEntityProcessor
+ * <p>
+ * CSV 행 데이터를 Restaurant 엔티티로 변환하는 클래스입니다.
+ */
 @Slf4j
-@Component
-public class RestaurantCsvToEntityProcessor implements ItemProcessor<RestaurantCsvRowData, Restaurant> {
-
-    private final RestaurantRepository restaurantRepository;
-
-    public RestaurantCsvToEntityProcessor(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
-    }
+public class CsvToEntityProcessor implements ItemProcessor<RestaurantCsvRowData, Restaurant> {
 
     @Override
     public Restaurant process(RestaurantCsvRowData csvRowData) {
-        // managementNumber 로 데이터베이스에서 조회
-        Optional<Restaurant> existing = restaurantRepository.findByManagementNumber(csvRowData.managementNumber());
-
-        Restaurant createdRestaurant = Restaurant.builder()
+        return Restaurant.builder()
                 .serviceName(csvRowData.serviceName())
                 .serviceId(csvRowData.serviceId())
                 .localGovernmentCode(csvRowData.localGovernmentCode())
@@ -52,15 +43,5 @@ public class RestaurantCsvToEntityProcessor implements ItemProcessor<RestaurantC
                 .industryTypeName(csvRowData.industryTypeName())
                 .traditionalBusinessDesignationNumber(csvRowData.traditionalBusinessDesignationNumber())
                 .build();
-
-        if (existing.isPresent()) {
-            // Restaurant 가 존재하면 업데이트
-            Restaurant existRestaurant = existing.get();
-            existRestaurant.update(createdRestaurant);
-            return existRestaurant;
-        } else {
-            // 없으면 새로 생성
-            return createdRestaurant;
-        }
     }
 }

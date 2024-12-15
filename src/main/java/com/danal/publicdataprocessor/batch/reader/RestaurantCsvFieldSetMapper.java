@@ -1,4 +1,4 @@
-package com.danal.publicdataprocessor.batch.job;
+package com.danal.publicdataprocessor.batch.reader;
 
 import com.danal.publicdataprocessor.batch.dto.RestaurantCsvRowData;
 import com.danal.publicdataprocessor.util.NumberUtils;
