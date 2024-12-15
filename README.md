@@ -3,16 +3,38 @@
 
 ## 설치하기
 
-1. Docker 설치
-    - [Docker 설치 가이드](https://docs.docker.com/get-docker/)를 참고하세요.
+### 1. Git LFS 설치 및 Clone
 
-2. Docker Compose 실행
+대용량 CSV 파일을 관리를 위해 Git LFS가 필요합니다.
+
+
+### 1-1. Git LFS 설치
+- [Git LFS 공식 웹사이트](https://git-lfs.com/)에서 설치 파일 다운로드
+1. MacOS
+```bash
+brew install git-lfs
+```
+
+### 1-2. 레포지토리 클론
+Git LFS를 설치한 후 프로젝트를 클론하세요:
+
+```bash
+git clone https://github.com/zieunx/spring-batch-csv.git
+```
+
+### 2. Docker 설치
+
+- [Docker 설치 가이드](https://docs.docker.com/get-docker/)를 참고하세요.
+
+### 2-1. Docker Compose 실행
+
    ```bash
    cd docker
    docker-compose up
    ```
 
-3. 애플리케이션 실행
+### 3. 애플리케이션 실행
+
    ```bash
    ./gradlew bootRun
    ```
