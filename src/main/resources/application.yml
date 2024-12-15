@@ -1,0 +1,23 @@
+spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3307/batch
+    username: batch_local
+    password: Qwer!234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    org.hibernate.engine.jdbc.connections.internal: DEBUG
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.tool.hbm2ddl: DEBUG

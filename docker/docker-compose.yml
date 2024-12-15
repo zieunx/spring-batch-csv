@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: danal_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: DevRoot!234
+      MYSQL_DATABASE: batch
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  mysql_data:
