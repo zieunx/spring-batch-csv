@@ -17,7 +17,7 @@ import org.hibernate.annotations.Comment;
 public class Restaurant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("고유 식별자 (자동 생성)")
     private int id;
 
